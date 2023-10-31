@@ -4,35 +4,34 @@ import {
   SeriesCollectionDirective,
   SeriesDirective,
   Inject,
-  LineSeries,
+  SplineAreaSeries,
   DateTime,
   Legend,
-  Tooltip,
 } from "@syncfusion/ej2-react-charts";
 
 import {
-  lineCustomSeries,
-  LinePrimaryYAxis,
-  LinePrimaryXAxis,
+  areaCustomSeries,
+  areaPrimaryXAxis,
+  areaPrimaryYAxis,
 } from "../../data/dummy";
 import { useStateContext } from "../../contexts/ContextProvider";
 
-const LineCharts = () => {
+const AreaCharts = () => {
   const { currentMode } = useStateContext();
 
   return (
     <ChartComponent
       id="line-chart"
       height="420px"
-      primaryXAxis={LinePrimaryXAxis}
-      primaryYAxis={LinePrimaryYAxis}
+      primaryXAxis={areaPrimaryXAxis}
+      primaryYAxis={areaPrimaryYAxis}
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
       background={currentMode === "Dark" ? "#33373e" : "#fff"}
     >
-      <Inject services={[LineSeries, DateTime, Legend, Tooltip]} />
+      <Inject services={[SplineAreaSeries, DateTime, Legend]} />
       <SeriesCollectionDirective>
-        {lineCustomSeries.map((item, index) => (
+        {areaCustomSeries.map((item, index) => (
           <SeriesDirective key={index} {...item} />
         ))}
       </SeriesCollectionDirective>
@@ -40,4 +39,4 @@ const LineCharts = () => {
   );
 };
 
-export default LineCharts;
+export default AreaCharts;
